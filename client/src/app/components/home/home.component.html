@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <main class="text-section">
+        <h1>Welcome to Video Conference App</h1>
+        <h4>Free Video meetings for everyone</h4>
+        <p class="text-secondary">Join or start a video conference</p>
+
+        <div class="meet-buttons-container" style="gap: 10px;">
+            <div>
+                <button class="btn btn-primary meet-button" (click)="toggleMeetings()">
+                    <i class="fas fa-video"></i> New meeting
+                </button>
+
+                <div *ngIf="showMeetings" class="buttons-container">
+                    <button class="btn btn-light" (click)="createMeetingForLater()"><i style="margin-right: 10px;" class="fas fa-calendar-alt"></i> Create a meeting for later</button>
+                    <button class="btn btn-light" (click)="startInstantMeeting()"><i style="margin-right: 10px;" class="fas fa-video" routerLink="/meet/{{meetLink}}"></i> Start an Instant meeting</button>
+                  </div>
+                  
+            </div>
+
+            <div #copyLinkModal class="modal fade" id="copyLinkModal" tabindex="-1" role="dialog" aria-labelledby="copyLinkModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="copyLinkModalLabel">Copy Meet Link</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hidePopup()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>{{ meetLink }}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hidePopup()">Close</button>
+                      <button type="button" class="btn btn-primary" (click)="copyToClipboard(meetLink); showMessage()">Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            <div>
+                <div>
+                    <input type="text" placeholder="Enter Conference ID" class="input-field form-controle">
+                    <button type="submit" class="join-button">Join</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <img src="https://cdn.technologyadvice.com/wp-content/uploads/2020/04/Videoconferencingett.png" class="image"
+        style="border-radius: 50%;" alt="">
+</div>
+

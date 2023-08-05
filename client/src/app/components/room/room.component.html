@@ -1,0 +1,91 @@
+
+<div class="video-chat-container d-flex align-items-center">
+
+  <div class="video-list-constainer" style="height: 90vh; border: 1px solid white;">
+    <div class="videos-container">
+      <div class="video-grid">
+        <div class="col-md-6">
+          <!-- Local video stream -->
+          <video #localVideoElement width="100%" height="auto" autoplay playsinline muted></video>
+        </div>
+        <div class="col-md-6">
+          <!-- Screen sharing video stream -->
+          <video id="screenVideo" width="100%" height="auto" *ngIf="isScreenSharing" autoplay></video>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls-container bg-secondary" style="width: fit-content; padding: 0 20px;border-radius: 10px; margin-bottom: 10px;">
+      <button class="control-button" (click)="toggleAudio()" [title]="isAudioMuted ? 'Unmute' : 'Mute'">
+        <i class="fas" [ngClass]="{ 'fa-microphone': !isAudioMuted, 'fa-microphone-slash': isAudioMuted }"></i>
+      </button>
+
+      <button class="control-button" (click)="toggleVideo()" [title]="isVideoOff ? 'Turn On Video' : 'Turn Off Video'">
+        <i class="fas" [ngClass]="{ 'fa-video': !isVideoOff, 'fa-video-slash': isVideoOff }"></i>
+      </button>
+
+      <button class="control-button" (click)="openChat()" title="Chat">
+        <i class="far fa-comment"></i>
+      </button>
+
+      <button class="control-button" (click)="shareScreen()" [title]="isScreenSharing?'Stop Sharing':'Share Screen'">
+        <i class="fas" [ngClass]="{'fa-desktop': !isScreenSharing, 'fa-stop-circle': isScreenSharing}"></i>
+      </button>
+
+      <button class="control-button" (click)="recordVideo()" [title]="isRecording ? 'Stop Recording' : 'Start Record'">
+        <i class="far" [ngClass]="{'fa-circle': !isRecording, 'fa-stop-circle': isRecording}"></i>
+      </button>
+
+      <button class="control-button bg-danger" (click)="stopVideo()" title="End Meeting">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="chat-container" [@slideAnimation]="isChatOpen ? 'open' : 'closed'">
+    <div class="d-flex justify-content-between p-3">
+      <div>
+        <button class="text-light btn p-2" style="border-radius: 10px 0 0 10px;" (click)="onShowParticipants()"><i
+            class="fas fa-users"></i></button>
+        <button class="text-light btn p-2" style="border-radius: 0 10px 10px 0;" (click)="onShowParticipants()"><i
+            class="fas fa-comment"></i></button>
+      </div>
+      <button class="text-light btn p-2" (click)="toggleChat()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div *ngIf="showParticipants" class="p-3 text-light">
+      <div *ngFor="let participant of participants">
+        <p class="m-2" *ngIf="participant.name === currentUser">{{ participant.name === currentUser ? 'You' :
+          participant.name }} ({{ participant.name }})</p>
+        <p class="m-2" *ngIf="participant.name !== currentUser">{{ participant.name }}</p>
+      </div>
+    </div>
+
+    <div class="w-100" *ngIf="!showParticipants">
+      <div class="chat-messages  p-3">
+        <ul>
+          <li *ngFor="let message of chatMessages"
+            style="background-color: rgb(159, 177, 196);padding: 2px 8px; border-radius: 0 10px 10px 10px;width: fit-content;max-width: 80%; flex-wrap: wrap;font-size: 14px; margin-bottom: 4px;">
+            <strong>{{ message.sender === currentUser ? 'You' : message.sender }}</strong>: {{ message.content }}
+            <p class="m-0" style="font-size: 10px;">{{ getCurrentTime() }} </p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" [(ngModel)]="newMessage" class="input-field p-2" placeholder="Type your message">
+        <button (click)="sendMessage()" class="btn p-2">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+<!-- <div>
+  <h2>Room Component</h2>
+  <video #localVideo autoplay muted></video>
+  <video #remoteVideo autoplay></video>
+  <button (click)="startVideoCall()">Start Video Call</button>
+</div> -->

@@ -1,0 +1,62 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^16.0.0",
+    "@angular/common": "^16.0.0",
+    "@angular/compiler": "^16.0.0",
+    "@angular/core": "^16.0.0",
+    "@angular/forms": "^16.0.0",
+    "@angular/platform-browser": "^16.0.0",
+    "@angular/platform-browser-dynamic": "^16.0.0",
+    "@angular/router": "^16.0.0",
+    "@types/socket.io-client": "^3.0.0",
+    "bootstrap": "^5.3.0",
+    "jquery": "^3.7.0",
+    "ngx-socket-io": "^4.5.1",
+    "ngx-webrtc": "^0.2.3",
+    "peerjs": "^1.4.7",
+    "peerjs-js-binarypack": "^2.0.0",
+    "rtcpeerconnection-shim": "^1.2.15",
+    "rxjs": "~7.8.0",
+    "simple-peer": "^9.11.1",
+    "simplewebrtc": "^3.0.2",
+    "socket.io": "^4.7.1",
+    "socket.io-client": "^4.7.1",
+    "tslib": "^2.3.0",
+    "util": "^0.12.5",
+    "uuidv4": "^6.2.13",
+    "webrtc-adapter": "^8.2.3",
+    "zone.js": "~0.13.0"
+  },
+  "allowedCommonJsDependencies": [
+    "peerjs",
+    "peerjs-js-binarypack",
+    "webrtc-adapter",
+    "rtcpeerconnection-shim"
+  ],
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.0.2",
+    "@angular/cli": "~16.0.2",
+    "@angular/compiler-cli": "^16.0.0",
+    "@types/jasmine": "~4.3.0",
+    "@types/jquery": "^3.5.16",
+    "@types/simple-peer": "^9.11.5",
+    "@types/webrtc": "^0.0.35",
+    "jasmine-core": "~4.6.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "typescript": "~5.0.2"
+  }
+}
